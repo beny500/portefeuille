@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Portefeuille">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="color-scheme" content="light dark">
+<title>Mon portefeuille</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACBElEQVR4nO3cMWoCURhGUZVgLdhYpTYLcS8BK8FlCFaB7CULSZ/eDVilTZFr95hBzlnAxysufzez3Oz2C/jPauoHMF/iIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIL1M/YBnc/u8j5jdvq9HzD7mcpDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQXra3z69fl1HzP4cTiNm58nlIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIA3/yv788T1i9nJ8GzHLXy4HSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRyk5Wa3n/oNzJTLQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZDEQRIHSRwkcZB+AeyjCw2cmpQ5AAAAAElFTkSuQmCC">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F2F4F7;--card:#fff;--ink:#101828;--mute:#667085;--line:#E4E7EC;--up:#067647;--dn:#B42318;--a1:#1D4ED8;--a2:#0E9384;--a3:#B54708;--chip:#E9EDF3;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0C111D;--card:#161B26;--ink:#F5F6F8;--mute:#98A2B3;--line:#272E3B;--up:#47CD89;--dn:#F97066;--a1:#84ADFF;--a2:#2ED3B7;--a3:#FDB022;--chip:#222937}}
+:root[data-theme="dark"]{--bg:#0C111D;--card:#161B26;--ink:#F5F6F8;--mute:#98A2B3;--line:#272E3B;--up:#47CD89;--dn:#F97066;--a1:#84ADFF;--a2:#2ED3B7;--a3:#FDB022;--chip:#222937}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 "Instrument Sans",-apple-system,system-ui,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
+main{max-width:640px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:15px;font-weight:600;color:var(--mute);margin:0 0 4px}
+#tot{font-size:44px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+#gain{font-size:18px;font-weight:600;margin-top:2px}
+.up{color:var(--up)}.dn{color:var(--dn)}
+#inv{color:var(--mute);font-size:14px;margin-top:2px}
+#asof{color:var(--mute);font-size:13px}
+#bar{display:flex;height:10px;border-radius:5px;overflow:hidden;margin:18px 0 8px;gap:2px}
+#bar i{display:block;min-width:2px}
+#leg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--mute)}
+#leg b{color:var(--ink);font-weight:600}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+#tabs{display:flex;gap:6px;margin:20px 0 12px;overflow-x:auto}
+#tabs button{flex:none;border:0;background:var(--chip);color:var(--ink);padding:9px 14px;border-radius:20px;font:inherit;font-size:14px;font-weight:500}
+#tabs button.on{background:var(--ink);color:var(--bg)}
+.tools{display:flex;gap:8px;margin-bottom:10px}
+input,select{font:inherit;font-size:16px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.tools input{flex:1}
+ul{list-style:none;margin:0;padding:0;background:var(--card);border-radius:14px;border:1px solid var(--line)}
+li{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid var(--line);cursor:pointer}
+li:first-child{border-top:0}
+li:active{background:var(--chip)}
+.nm{font-weight:600;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sub{font-size:13px;color:var(--mute);margin-top:1px}
+.l{min-width:0}.r{text-align:right;flex:none}
+.r .v{font-weight:600}.r .p{font-size:13px;margin-top:1px;font-weight:500}
+.empty{padding:28px 16px;text-align:center;color:var(--mute);cursor:default}
+h2{font-size:15px;margin:28px 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 14px;border-radius:10px;font:inherit;font-size:14px;font-weight:500}
+.btn.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.del{color:var(--dn)}
+.note{font-size:13px;color:var(--mute);margin:8px 0 0}
+#veil{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center;z-index:20}
+#veil.on{display:flex}
+#sheet{background:var(--card);width:100%;max-width:640px;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));display:grid;gap:10px;max-height:92%;overflow:auto}
+#sheet label{display:grid;gap:4px;font-size:13px;color:var(--mute)}
+#sheet h3{margin:0;font-size:17px}
+.two{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+</style></head><body><main>
+<h1>Valeur totale</h1><div id="tot"></div><div id="gain"></div><div id="inv"></div><div id="asof"></div>
+<div id="bar"></div><div id="leg"></div>
+<div id="tabs"></div>
+<div class="tools"><input id="q" type="search" placeholder="Rechercher une ligne"><select id="so"><option value="val">Valeur</option><option value="pct">Perf. %</option><option value="eur">Perf. €</option><option value="nom">Nom</option></select></div>
+<ul id="list"></ul>
+<h2>Données</h2>
+<div class="row"><button class="btn pri" id="ref">Actualiser les cours</button><button class="btn" id="add">Ajouter une ligne</button><button class="btn" data-imp="pea">Importer PEA</button><button class="btn" data-imp="rev">Importer Revolut</button><button class="btn" data-imp="deg">Importer DEGIRO</button><button class="btn del" id="rst">Réinitialiser</button></div>
+<p class="note">Les cours se mettent à jour automatiquement chaque soir (jours de Bourse) et à chaque ouverture de l’application. Au premier lancement, importez vos 3 fichiers CSV : vos positions restent uniquement sur cet appareil. Un cours corrigé à la main est remplacé à la prochaine actualisation.</p>
+<input type="file" id="file" accept=".csv,.txt,text/csv" hidden>
+</main>
+<div id="veil"><div id="sheet"></div></div>
+<script>
+const SEED={"pea":[],"rev":[],"deg":[]};
+const ACC={pea:"PEA Caisse d’Epargne",rev:"Revolut CTO",deg:"DEGIRO CTO"},COL={pea:"var(--a1)",rev:"var(--a2)",deg:"var(--a3)"};
+const $=s=>document.querySelector(s);
+const eur=n=>n.toLocaleString("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:0});
+const eur2=n=>n.toLocaleString("fr-FR",{style:"currency",currency:"EUR",maximumFractionDigits:2});
+const pct=n=>(n>0?"+":"")+n.toFixed(1).replace(".",",")+" %";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S=null,tab="all",sort="val",q="",impK=null;
+try{S=JSON.parse(localStorage.getItem("pf1"))}catch(e){}
+if(!S||!S.pea)S=JSON.parse(JSON.stringify(SEED));
+const save=()=>{try{localStorage.setItem("pf1",JSON.stringify(S))}catch(e){}};
+function all(){const r=[];for(const k in S)S[k].forEach((p,i)=>r.push({k,i,n:p[0],id:p[1],t:p[2],q:p[3],c:p[4],p:p[5],v:p[3]*p[5],inv:p[3]*p[4],g:p[3]*(p[5]-p[4])}));return r}
+function render(){
+ const A=all(),F=(tab=="all"?A:A.filter(x=>x.k==tab));
+ const V=F.reduce((s,x)=>s+x.v,0),I=F.reduce((s,x)=>s+x.inv,0),G=V-I;
+ $("#tot").textContent=eur(V);
+ const g=$("#gain");g.textContent=(G>0?"+":"")+eur(G)+"  ("+pct(I?G/I*100:0)+")";g.className=G>=0?"up":"dn";
+ $("#inv").textContent="Investi "+eur(I)+" · "+F.length+" lignes";
+ const TV=A.reduce((s,x)=>s+x.v,0)||1;let bar="",leg="";
+ for(const k in S){const v=A.filter(x=>x.k==k).reduce((s,x)=>s+x.v,0);bar+=`<i style="flex:${v};background:${COL[k]}"></i>`;leg+=`<span><span class="dot" style="background:${COL[k]}"></span>${ACC[k]} <b>${(v/TV*100).toFixed(0)} %</b></span>`}
+ $("#asof").textContent=P&&P.asof?"Cours de clôture du "+P.asof.split("-").reverse().join("/"):"";$("#bar").innerHTML=bar;$("#leg").innerHTML=leg;
+ $("#tabs").innerHTML=[["all","Tous"],["pea","PEA"],["rev","Revolut"],["deg","DEGIRO"]].map(([k,l])=>`<button data-t="${k}" class="${tab==k?"on":""}">${l}</button>`).join("");
+ let L=F.filter(x=>(x.n+" "+x.id).toLowerCase().includes(q));
+ const key={val:x=>-x.v,pct:x=>-(x.inv?x.g/x.inv:0),eur:x=>-x.g,nom:x=>x.n.toLowerCase()}[sort];
+ L.sort((a,b)=>key(a)>key(b)?1:-1);
+ $("#list").innerHTML=L.length?L.map(x=>{const pc=x.inv?x.g/x.inv*100:0;return `<li data-k="${x.k}" data-i="${x.i}"><div class="l"><div class="nm">${esc(x.n)}</div><div class="sub">${+x.q.toFixed(4)} × ${eur2(x.p)}${tab=="all"?" · "+ACC[x.k].split(" ")[0]:""}</div></div><div class="r"><div class="v">${eur(x.v)}</div><div class="p ${x.g>=0?"up":"dn"}">${pct(pc)} · ${(x.g>0?"+":"")+eur(x.g)}</div></div></li>`}).join(""):`<li class="empty">Aucune ligne. Importez un CSV ou ajoutez une ligne.</li>`;
+}
+function openSheet(k,i){
+ const p=i>=0?S[k][i]:["","","Action","","",""];
+ $("#sheet").innerHTML=`<h3>${i>=0?"Modifier la ligne":"Nouvelle ligne"}</h3>
+ <label>Compte<select id="fk" ${i>=0?"disabled":""}>${Object.keys(ACC).map(a=>`<option value="${a}" ${a==k?"selected":""}>${ACC[a]}</option>`).join("")}</select></label>
+ <label>Nom<input id="fn" value="${esc(p[0])}"></label>
+ <div class="two"><label>Quantité<input id="fq" inputmode="decimal" value="${p[3]}"></label><label>PRU (€)<input id="fc" inputmode="decimal" value="${p[4]}"></label><label>Cours (€)<input id="fp" inputmode="decimal" value="${p[5]}"></label></div>
+ <div class="row"><button class="btn pri" id="ok">Enregistrer</button><button class="btn" id="no">Annuler</button>${i>=0?'<button class="btn del" id="rm">Supprimer</button>':""}</div>`;
+ $("#veil").classList.add("on");
+ const num=s=>parseFloat(String(s).replace(/\s/g,"").replace(",","."));
+ $("#no").onclick=()=>$("#veil").classList.remove("on");
+ $("#ok").onclick=()=>{const n=$("#fn").value.trim(),a=num($("#fq").value),b=num($("#fc").value),c=num($("#fp").value);if(!n||!(a>=0)||!isFinite(b)||!isFinite(c))return;
+  const row=[n,p[1],p[2],a,b,c];if(i>=0)S[k][i]=row;else S[$("#fk").value].push(row);save();$("#veil").classList.remove("on");render()};
+ if(i>=0)$("#rm").onclick=()=>{if(confirm("Supprimer cette ligne ?")){S[k].splice(i,1);save();$("#veil").classList.remove("on");render()}};
+}
+function parseCSV(t){
+ const L=t.replace(/^\uFEFF/,"").split(/\r?\n/).filter(l=>l.trim()),d=L[0].includes(";")?";":",";
+ const H=L.shift().split(d).map(h=>h.trim().toLowerCase().replace(/"/g,"")),ix=n=>H.findIndex(h=>h.startsWith(n));
+ const [a,b,c,e,f,g]=["nom","ticker","type","quantit","pru","dernier"].map(ix);
+ if([a,e,f,g].some(v=>v<0))return null;
+ const num=s=>parseFloat(String(s).replace(/\s/g,"").replace(",","."));
+ return L.map(l=>{const r=l.split(d);return[r[a],r[b]||"",r[c]||"Action",num(r[e]),num(r[f]),num(r[g])]}).filter(p=>p[0]&&p[3]>0&&isFinite(p[4])&&isFinite(p[5]));
+}
+document.addEventListener("click",e=>{
+ const t=e.target.closest("[data-t]"),li=e.target.closest("li[data-k]"),im=e.target.closest("[data-imp]");
+ if(t){tab=t.dataset.t;render()}
+ else if(li)openSheet(li.dataset.k,+li.dataset.i);
+ else if(im){impK=im.dataset.imp;$("#file").value="";$("#file").click()}
+ else if(e.target.id=="ref")refresh(true);
+ else if(e.target.id=="add")openSheet(tab=="all"?"pea":tab,-1);
+ else if(e.target.id=="rst"){if(confirm("Revenir aux positions d’origine ? Vos modifications seront perdues.")){S=JSON.parse(JSON.stringify(SEED));save();render()}}
+ else if(e.target.id=="veil")$("#veil").classList.remove("on");
+});
+$("#file").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const p=parseCSV(r.result);
+ if(!p||!p.length){alert("Fichier non reconnu. Il faut les colonnes Nom, Quantité, PRU et Dernier cours.");return}
+ if(confirm("Remplacer les "+S[impK].length+" lignes de "+ACC[impK]+" par les "+p.length+" lignes du fichier ?")){S[impK]=p;applyP();save();render()}};r.readAsText(f,"utf-8")};
+$("#q").oninput=e=>{q=e.target.value.toLowerCase();render()};
+$("#so").onchange=e=>{sort=e.target.value;render()};
+let P=null;
+function applyP(){if(!P)return;for(const k in S)S[k].forEach(p=>{const v=P.prices[p[1]];if(v>0)p[5]=v})}
+async function refresh(manual){try{const r=await fetch("prices.json?"+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;P=await r.json();applyP();save();render()}catch(e){if(manual)alert("Impossible de charger les cours. Vérifiez votre connexion.")}}
+render();refresh();
+document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()});
+</script></body></html>
